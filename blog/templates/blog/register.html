@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% load sidebar %}
+{% block title %} Register :: {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="single-blog-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="border-top">
+                    <div class="col-md-8">
+                        <div class="blog-area">
+                            <form method="post" >
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="newsletter">
+                            <h2 class="sidebar-title">Search</h2>
+                            <form action="{% url 'search' %}" method="get">
+                                <input type="text" name="s" placeholder="Search...">
+                                <input type="submit" value="Search">
+                            </form>
+                        </div>
+                        {% get_popular 3 %}
+
+                        {% get_tags %}
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+{% endblock %}
